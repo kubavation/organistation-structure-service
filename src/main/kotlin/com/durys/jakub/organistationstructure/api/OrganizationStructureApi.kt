@@ -1,4 +1,4 @@
-package com.durys.jakub.organistationstructure.infrastructure.input
+package com.durys.jakub.organistationstructure.api
 
 import com.durys.jakub.organistationstructure.application.OrganizationStructure
 import com.durys.jakub.organistationstructure.domain.StructureEntry
@@ -13,15 +13,9 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/organization-structure")
-class OrganizationStructureController(private val organisationStructure: OrganizationStructure) {
+@RequestMapping("/api")
+class OrganizationStructureApi(private val organisationStructure: OrganizationStructure) {
 
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody structure: StructureEntryDTO) {
-        organisationStructure.addStructure(structure.parentId, structure.name, structure.shortcut);
-    }
 
     @GetMapping("/{structureId}")
     fun getStructure(@PathVariable structureId: String): StructureEntry {
