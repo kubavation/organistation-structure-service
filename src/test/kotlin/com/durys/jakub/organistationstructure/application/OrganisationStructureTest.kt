@@ -16,7 +16,7 @@ class OrganisationStructureTest {
 
 
     @Test
-    fun addStructureEntry_shouldSuccessfullyAppendEntry() {
+    fun addStructureEntryWithoutParent_shouldSuccessfullyCreateEntry() {
         val parentId = UUID.randomUUID().toString()
         val name = "General department"
         val shortcut = "GD"
