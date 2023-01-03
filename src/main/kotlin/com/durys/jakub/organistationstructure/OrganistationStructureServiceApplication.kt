@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class OrgranistationStructureServiceApplication
+class OrganisationStructureServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<OrgranistationStructureServiceApplication>(*args)
+	runApplication<OrganisationStructureServiceApplication>(*args)
 }
