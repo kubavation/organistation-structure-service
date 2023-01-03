@@ -15,4 +15,9 @@ class StructureEntry (
     val status: String = ""
     val path: String = ""
 
+
+    fun addDependant(dependant: StructureEntry) {
+        entries.add(dependant)
+    }
+
 }
