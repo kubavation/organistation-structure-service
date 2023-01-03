@@ -13,10 +13,10 @@ class MongoStructureEntryRepository(private val mongoTemplate: MongoTemplate): S
     }
 
     override fun loadByPath(path: String): StructureEntry? {
-        TODO("Not yet implemented")
+        return mongoTemplate.findOne(Query().addCriteria(StructureEntry::path isEqualTo path), StructureEntry::class.java)
     }
 
     override fun save(entry: StructureEntry) {
-        TODO("Not yet implemented")
+        mongoTemplate.save(entry)
     }
 }
