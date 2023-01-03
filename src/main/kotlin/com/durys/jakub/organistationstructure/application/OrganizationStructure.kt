@@ -6,5 +6,4 @@ import org.springframework.stereotype.Component
 @Component
 class OrganizationStructure(private val structureEntryRepository: StructureEntryRepository) {
 
-
 }
