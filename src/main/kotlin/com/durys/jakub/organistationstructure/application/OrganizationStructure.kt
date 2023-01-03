@@ -13,7 +13,9 @@ class OrganizationStructure(private val structureEntryRepository: StructureEntry
 
     fun addStructure(parentId: String?, name: String, shortcut: String) {
         if (parentId != null) {
+
             val parent = structureEntryRepository.load(parentId)
+
             if (parent == null) {
                 throw RuntimeException()
             }
