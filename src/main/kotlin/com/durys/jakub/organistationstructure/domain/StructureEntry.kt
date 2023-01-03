@@ -12,5 +12,5 @@ class StructureEntry (
     val shortcut: String,
     @Field("entries")
     val entries: List<StructureEntry>,
-    val status: String
-)
+    val status: String,
+    val path: String)
