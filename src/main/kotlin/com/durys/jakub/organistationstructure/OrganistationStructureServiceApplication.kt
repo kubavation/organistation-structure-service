@@ -1,4 +1,4 @@
-package com.durys.jakub.orgranistationstructure
+package com.durys.jakub.organistationstructure
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

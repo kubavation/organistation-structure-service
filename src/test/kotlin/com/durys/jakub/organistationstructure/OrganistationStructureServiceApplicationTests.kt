@@ -1,10 +1,10 @@
-package com.durys.jakub.orgranistationstructure
+package com.durys.jakub.organistationstructure
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class OrgranistationStructureServiceApplicationTests {
+class OrganistationStructureServiceApplicationTests {
 
 	@Test
 	fun contextLoads() {
