@@ -4,11 +4,10 @@ import com.durys.jakub.organistationstructure.domain.StructureEntry
 import com.durys.jakub.organistationstructure.domain.StructureEntryNotFoundException
 import com.durys.jakub.organistationstructure.domain.StructureEntryRepository
 import org.springframework.stereotype.Component
-import java.lang.RuntimeException
 import java.util.UUID
 
 @Component
-class OrganizationStructure(private val structureEntryRepository: StructureEntryRepository) {
+class OrganizationStructureApplicationService(private val structureEntryRepository: StructureEntryRepository) {
 
 
 

@@ -1,6 +1,6 @@
 package com.durys.jakub.organistationstructure.infrastructure.input
 
-import com.durys.jakub.organistationstructure.application.OrganizationStructure
+import com.durys.jakub.organistationstructure.application.OrganizationStructureApplicationService
 import com.durys.jakub.organistationstructure.domain.StructureEntry
 import com.durys.jakub.organistationstructure.infrastructure.input.dto.StructureEntryDTO
 import org.springframework.http.HttpStatus
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/organization-structure")
-class OrganizationStructureController(private val organisationStructure: OrganizationStructure) {
+class OrganizationStructureController(private val organisationStructure: OrganizationStructureApplicationService) {
 
 
     @PostMapping

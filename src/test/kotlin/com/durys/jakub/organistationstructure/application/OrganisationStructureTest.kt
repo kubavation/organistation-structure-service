@@ -15,7 +15,7 @@ class OrganisationStructureTest {
 
      val structureEntryRepository: StructureEntryRepository = Mockito.mock(MongoStructureEntryRepository::class.java)
 
-     val organisationStructure: OrganizationStructure = OrganizationStructure(structureEntryRepository)
+     val organisationStructure: OrganizationStructureApplicationService = OrganizationStructureApplicationService(structureEntryRepository)
 
 
     @Test
