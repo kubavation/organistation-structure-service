@@ -13,11 +13,16 @@ class StructureEntry (
     @Field("entries")
     val entries: MutableList<StructureEntry> = mutableListOf()
     val status: String = ""
-    val path: String = ""
+    var path: String? = shortcut
 
 
     fun addDependant(dependant: StructureEntry) {
+        preparePath(dependant)
         entries.add(dependant)
+    }
+
+    private fun preparePath(entry: StructureEntry) {
+        entry.path = "$path/${entry.shortcut}"
     }
 
 }
