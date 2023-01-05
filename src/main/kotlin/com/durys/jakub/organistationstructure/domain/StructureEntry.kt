@@ -25,4 +25,6 @@ class StructureEntry (
         entry.path = "$path/${entry.shortcut}"
     }
 
+
+
 }

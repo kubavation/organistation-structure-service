@@ -9,8 +9,6 @@ import java.util.UUID
 @Component
 class OrganizationStructureApplicationService(private val structureEntryRepository: StructureEntryRepository) {
 
-
-
     fun addStructure(parentId: String?, name: String, shortcut: String) {
 
         if (parentId != null) {
