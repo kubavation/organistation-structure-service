@@ -14,6 +14,6 @@ class OrganizationStructureApi(private val organisationStructure: OrganizationSt
 
     @GetMapping("/{structureId}")
     fun getStructure(@PathVariable structureId: String): StructureEntry {
-        return organisationStructure.structure(structureId)
+        return organisationStructure.findStructure(structureId)
     }
 }

@@ -23,7 +23,7 @@ class OrganizationStructureApplicationService(private val structureEntryReposito
         }
     }
 
-    fun structure(id: String): StructureEntry {
+    fun findStructure(id: String): StructureEntry {
        return structureEntryRepository.load(id) ?: throw StructureEntryNotFoundException(id)
     }
 
