@@ -10,9 +10,13 @@ class StructureEntry (
     val name: String,
     val shortcut: String) {
 
+    enum class Status {
+        ACTIVE, DEACTIVATED
+    }
+
     @Field("entries")
     val entries: MutableList<StructureEntry> = mutableListOf()
-    var status: String = "ACTIVE"
+    var status: Status = Status.ACTIVE
     var path: String? = shortcut
 
 
@@ -25,6 +29,8 @@ class StructureEntry (
         entry.path = "$path/${entry.shortcut}"
     }
 
-
+    fun deactivate() {
+        status = Status.DEACTIVATED
+    }
 
 }
