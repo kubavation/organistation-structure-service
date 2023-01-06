@@ -20,5 +20,8 @@ class OrganizationStructureApplicationService(
        return structureEntryRepository.load(id) ?: throw StructureEntryNotFoundException(id)
     }
 
+    fun changeStructureDetails(structureEntryId: String, name: String, shortcut: String) {
+        organisationStructureService.changeStructureEntryDetails(structureEntryId, name, shortcut)
+    }
 
 }
