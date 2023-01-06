@@ -10,7 +10,6 @@ class OrganisationStructureService(
         private val eventPublisher: EventPublisher) {
 
     fun createStructure(parentId: String?, name: String, shortcut: String) {
-
         if (parentId != null) {
             addDependantStructure(parentId, name, shortcut)
         } else {
