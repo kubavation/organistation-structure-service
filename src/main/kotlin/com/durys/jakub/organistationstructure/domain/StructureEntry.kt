@@ -25,8 +25,8 @@ class StructureEntry (
         entries.add(dependant)
     }
 
-    private fun preparePath(entry: StructureEntry) {
-        entry.path = "$path/${entry.shortcut}"
+    private fun withPath(parent: StructureEntry) {
+        path = "${parent.path}/$shortcut"
     }
 
     fun deactivate() {
