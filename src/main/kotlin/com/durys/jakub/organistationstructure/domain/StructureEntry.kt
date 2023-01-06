@@ -2,7 +2,11 @@ package com.durys.jakub.organistationstructure.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.Field
+
+
+fun String.parentPath(): String {
+   return this.substring(this.lastIndexOf("/"))
+}
 
 @Document("structure_entry")
 class StructureEntry (
@@ -30,7 +34,7 @@ class StructureEntry (
     fun deactivate() {
         status = Status.DEACTIVATED
         entries.forEach {
-            deactivate()
+            it.deactivate()
         }
     }
 
@@ -42,5 +46,6 @@ class StructureEntry (
             changeDetails(entry.name, entry.shortcut)
         }
     }
+
 
 }
