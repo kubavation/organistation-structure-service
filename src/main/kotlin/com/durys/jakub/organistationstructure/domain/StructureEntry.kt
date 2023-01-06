@@ -30,6 +30,9 @@ class StructureEntry (
 
     fun deactivate() {
         status = Status.DEACTIVATED
+        entries.forEach {
+            deactivate()
+        }
     }
 
     fun changeDetails(name: String, shortcut: String) {

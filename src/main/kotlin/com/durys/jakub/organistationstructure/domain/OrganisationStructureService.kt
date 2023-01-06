@@ -36,4 +36,10 @@ class OrganisationStructureService(
     private fun changeDependantsPath() {
         //todo ("implement me")
     }
+
+    fun deactivateStructure(structureEntryId: String) {
+        val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
+        entry.deactivate()
+        //todo publish
+    }
 }
