@@ -1,6 +1,7 @@
 package com.durys.jakub.organistationstructure.domain
 
 import com.durys.jakub.organistationstructure.commons.EventPublisher
+import com.durys.jakub.organistationstructure.domain.events.StructureEntryChanged
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -29,5 +30,6 @@ class OrganisationStructureService(
         entry.changeDetails(name, shortcut)
 
         structureEntryRepository.save(entry)
+        eventPublisher.publish(StructureEntryChanged(structureEntryId, entry.name, entry.shortcut, entry.path))
     }
 }
