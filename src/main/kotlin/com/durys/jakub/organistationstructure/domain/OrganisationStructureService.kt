@@ -23,4 +23,10 @@ class OrganisationStructureService(
         parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
         structureEntryRepository.save(parent)
     }
+
+    fun changeStructureEntryDetails(structureEntryId: String, name: String, shortcut: String) {
+        val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
+
+        entry.changeDetails(name, shortcut)
+    }
 }

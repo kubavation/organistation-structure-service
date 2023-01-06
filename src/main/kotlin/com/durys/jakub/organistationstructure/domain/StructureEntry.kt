@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field
 @Document("structure_entry")
 class StructureEntry (
     @Id val id: String,
-    val name: String,
-    val shortcut: String) {
+    var name: String,
+    var shortcut: String) {
 
     enum class Status {
         ACTIVE, DEACTIVATED
@@ -32,5 +32,9 @@ class StructureEntry (
         status = Status.DEACTIVATED
     }
 
+    fun changeDetails(name: String, shortcut: String) {
+        this.name = name
+        this.shortcut = shortcut
+    }
 
 }
