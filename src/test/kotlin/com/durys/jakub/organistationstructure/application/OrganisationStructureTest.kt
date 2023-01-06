@@ -1,9 +1,12 @@
 package com.durys.jakub.organistationstructure.application
 
+import com.durys.jakub.organistationstructure.commons.EventPublisher
+import com.durys.jakub.organistationstructure.domain.OrganisationStructureService
 import com.durys.jakub.organistationstructure.domain.StructureEntry
 import com.durys.jakub.organistationstructure.domain.StructureEntryNotFoundException
 import com.durys.jakub.organistationstructure.domain.StructureEntryRepository
 import com.durys.jakub.organistationstructure.infrastructure.output.MongoStructureEntryRepository
+import com.durys.jakub.organistationstructure.infrastructure.output.RabbitmqEventPublisher
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
@@ -15,7 +18,12 @@ class OrganisationStructureTest {
 
      val structureEntryRepository: StructureEntryRepository = Mockito.mock(MongoStructureEntryRepository::class.java)
 
-     val organisationStructure: OrganizationStructureApplicationService = OrganizationStructureApplicationService(structureEntryRepository)
+     val eventPublisher: EventPublisher = Mockito.mock(RabbitmqEventPublisher::class.java);
+
+     val organizationStructureDomainService = OrganisationStructureService(structureEntryRepository, eventPublisher)
+
+     val organizationStructure: OrganizationStructureApplicationService
+                = OrganizationStructureApplicationService(structureEntryRepository, organizationStructureDomainService)
 
 
     @Test
@@ -24,7 +32,7 @@ class OrganisationStructureTest {
         val name = "General department"
         val shortcut = "GD"
 
-        organisationStructure.addStructure(parentId, name, shortcut)
+        organizationStructure.addStructure(parentId, name, shortcut)
 
         Mockito.verify(structureEntryRepository, Mockito.times(1)).save(any());
     }
@@ -38,7 +46,7 @@ class OrganisationStructureTest {
 
 
         Mockito.`when`(structureEntryRepository.load(parentId)).thenReturn(parent)
-        organisationStructure.addStructure(parentId, name, shortcut)
+        organizationStructure.addStructure(parentId, name, shortcut)
 
         Mockito.verify(structureEntryRepository, Mockito.times(1)).save(any());
         Assertions.assertEquals(1, parent.entries.size)
@@ -52,7 +60,7 @@ class OrganisationStructureTest {
         val shortcut = "GD"
 
         Mockito.`when`(structureEntryRepository.load(parentId)).thenReturn(null)
-        Assertions.assertThrows(StructureEntryNotFoundException::class.java) { organisationStructure.addStructure(parentId, name, shortcut) }
+        Assertions.assertThrows(StructureEntryNotFoundException::class.java) { organizationStructure.addStructure(parentId, name, shortcut) }
 
     }
 
