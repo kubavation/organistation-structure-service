@@ -24,4 +24,8 @@ class OrganizationStructureApplicationService(
         organisationStructureService.changeStructureEntryDetails(structureEntryId, name, shortcut)
     }
 
+    fun deactivateStructure(structureEntryId: String) {
+        organisationStructureService.deactivateStructure(structureEntryId)
+    }
+
 }
