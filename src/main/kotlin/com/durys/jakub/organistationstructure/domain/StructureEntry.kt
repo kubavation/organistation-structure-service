@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 
 fun String.parentPath(): String {
-   return this.substring(this.lastIndexOf("/"))
+   return this.substring(0, this.lastIndexOf("/"))
 }
 
 @Document("structure_entry")
@@ -41,7 +41,7 @@ class StructureEntry (
     fun changeDetails(name: String, shortcut: String) {
         this.name = name
         this.shortcut = shortcut
-        this.path = "todo"
+        this.path = this.path.parentPath() + "/${this.shortcut}"
         entries.forEach {entry ->
             changeDetails(entry.name, entry.shortcut)
         }
