@@ -15,7 +15,7 @@ class OrganizationStructureApplicationService(private val structureEntryReposito
 
             val parent = structureEntryRepository.load(parentId) ?: throw StructureEntryNotFoundException(parentId)
 
-            parent.addDependant(StructureEntry(UUID.randomUUID().toString(), name, shortcut))
+            parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
             structureEntryRepository.save(parent)
 
         } else {
