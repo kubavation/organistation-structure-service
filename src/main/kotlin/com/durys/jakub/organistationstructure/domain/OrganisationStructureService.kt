@@ -9,5 +9,19 @@ class OrganisationStructureService(
         private val structureEntryRepository: StructureEntryRepository,
         private val eventPublisher: EventPublisher) {
 
-    
+    fun createStructure(parentId: String?, name: String, shortcut: String) {
+
+        if (parentId != null) {
+            addDependantStructure(parentId, name, shortcut)
+        } else {
+            structureEntryRepository.save(StructureEntry(UUID.randomUUID().toString(), name, shortcut))
+        }
+    }
+
+    private fun addDependantStructure(parentId: String, name: String, shortcut: String) {
+        val parent = structureEntryRepository.load(parentId) ?: throw StructureEntryNotFoundException(parentId)
+
+        parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
+        structureEntryRepository.save(parent)
+    }
 }
