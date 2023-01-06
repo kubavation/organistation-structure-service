@@ -75,4 +75,23 @@ class OrganisationStructureTest {
         Assertions.assertEquals(StructureEntry.Status.DEACTIVATED, entry.status)
     }
 
+    @Test
+    fun deactivateStructureEntry_shouldDeactivateAlsoDependantEntries() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD",
+            entries = mutableListOf(
+                StructureEntry(UUID.randomUUID().toString(), "Department 1", "DD 1"),
+                StructureEntry(UUID.randomUUID().toString(), "Department 2", "DD 2")
+            )
+        );
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+        organizationStructure.deactivateStructure(entryId)
+
+        Assertions.assertEquals(StructureEntry.Status.DEACTIVATED, entry.status)
+        entry.entries.forEach {
+            Assertions.assertEquals(StructureEntry.Status.DEACTIVATED, it.status)
+        }
+    }
+
 }
