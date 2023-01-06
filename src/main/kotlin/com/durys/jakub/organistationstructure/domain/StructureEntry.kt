@@ -20,17 +20,17 @@ class StructureEntry (
     var path: String? = shortcut
 
 
-    fun addDependant(dependant: StructureEntry) {
-        preparePath(dependant)
-        entries.add(dependant)
-    }
+    infix fun addDependant(dependant: StructureEntry) = entries.add(dependant withPathOf this)
 
-    private fun withPath(parent: StructureEntry) {
+
+    private infix fun withPathOf(parent: StructureEntry): StructureEntry {
         path = "${parent.path}/$shortcut"
+        return this
     }
 
     fun deactivate() {
         status = Status.DEACTIVATED
     }
+
 
 }
