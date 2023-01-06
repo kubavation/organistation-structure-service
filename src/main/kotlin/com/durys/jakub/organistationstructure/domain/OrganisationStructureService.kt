@@ -26,7 +26,8 @@ class OrganisationStructureService(
 
     fun changeStructureEntryDetails(structureEntryId: String, name: String, shortcut: String) {
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
-
         entry.changeDetails(name, shortcut)
+
+        structureEntryRepository.save(entry)
     }
 }
