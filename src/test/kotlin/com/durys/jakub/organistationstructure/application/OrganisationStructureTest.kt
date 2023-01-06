@@ -18,7 +18,7 @@ class OrganisationStructureTest {
 
      val structureEntryRepository: StructureEntryRepository = Mockito.mock(MongoStructureEntryRepository::class.java)
 
-     val eventPublisher: EventPublisher = Mockito.mock(RabbitmqEventPublisher::class.java);
+     val eventPublisher: RabbitmqEventPublisher = Mockito.mock(RabbitmqEventPublisher::class.java);
 
      val organizationStructureDomainService = OrganisationStructureService(structureEntryRepository, eventPublisher)
 
