@@ -32,4 +32,8 @@ class OrganisationStructureService(
         structureEntryRepository.save(entry)
         eventPublisher.publish(StructureEntryChanged(structureEntryId, entry.name, entry.shortcut, entry.path))
     }
+
+    private fun changeDependantsPath() {
+        //todo ("implement me")
+    }
 }
