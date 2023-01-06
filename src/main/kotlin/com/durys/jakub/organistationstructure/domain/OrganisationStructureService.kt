@@ -40,6 +40,6 @@ class OrganisationStructureService(
     fun deactivateStructure(structureEntryId: String) {
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
         entry.deactivate()
-        //todo publish
+        structureEntryRepository.save(entry)
     }
 }

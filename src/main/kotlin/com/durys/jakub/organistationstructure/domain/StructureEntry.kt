@@ -14,7 +14,6 @@ class StructureEntry (
         ACTIVE, DEACTIVATED
     }
 
-    @Field("entries")
     val entries: MutableList<StructureEntry> = mutableListOf()
     var status: Status = Status.ACTIVE
     var path: String = shortcut
