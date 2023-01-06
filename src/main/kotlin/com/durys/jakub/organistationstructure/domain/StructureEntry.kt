@@ -12,13 +12,13 @@ fun String.parentPath(): String {
 class StructureEntry (
     @Id val id: String,
     var name: String,
-    var shortcut: String) {
+    var shortcut: String,
+    var entries: MutableList<StructureEntry> = mutableListOf()) {
 
     enum class Status {
         ACTIVE, DEACTIVATED
     }
 
-    val entries: MutableList<StructureEntry> = mutableListOf()
     var status: Status = Status.ACTIVE
     var path: String = shortcut
 
