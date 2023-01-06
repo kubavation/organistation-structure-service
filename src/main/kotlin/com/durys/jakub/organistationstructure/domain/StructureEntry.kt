@@ -37,6 +37,10 @@ class StructureEntry (
     fun changeDetails(name: String, shortcut: String) {
         this.name = name
         this.shortcut = shortcut
+        this.path = "todo"
+        entries.forEach {entry ->
+            changeDetails(entry.name, entry.shortcut)
+        }
     }
 
 }
