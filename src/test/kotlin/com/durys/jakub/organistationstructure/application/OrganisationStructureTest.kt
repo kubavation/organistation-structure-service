@@ -61,7 +61,18 @@ class OrganisationStructureTest {
 
         Mockito.`when`(structureEntryRepository.load(parentId)).thenReturn(null)
         Assertions.assertThrows(StructureEntryNotFoundException::class.java) { organizationStructure.addStructure(parentId, name, shortcut) }
+    }
 
+    @Test
+    fun deactivateStructureEntry_shouldDeactivate() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD")
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+
+        organizationStructure.deactivateStructure(entryId)
+
+        Assertions.assertEquals(StructureEntry.Status.DEACTIVATED, entry.status)
     }
 
 }
