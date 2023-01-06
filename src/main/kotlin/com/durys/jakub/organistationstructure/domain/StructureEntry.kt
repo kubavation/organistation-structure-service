@@ -17,7 +17,7 @@ class StructureEntry (
     @Field("entries")
     val entries: MutableList<StructureEntry> = mutableListOf()
     var status: Status = Status.ACTIVE
-    var path: String? = shortcut
+    var path: String = shortcut
 
 
     infix fun addDependant(dependant: StructureEntry) = entries.add(dependant withPathOf this)
