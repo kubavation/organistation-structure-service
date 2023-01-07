@@ -170,7 +170,7 @@ class OrganisationStructureTest {
 
         organizationStructure.deactivateStructure(entryId)
 
-        Mockito.verify(eventPublisher, Mockito.times(1)).publish(any())
+        Mockito.verify(eventPublisher, Mockito.times(1)).publish(any<StructureEntryDeactivated>())
     }
 
 }
