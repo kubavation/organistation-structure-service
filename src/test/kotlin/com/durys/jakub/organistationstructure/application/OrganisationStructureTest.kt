@@ -173,4 +173,19 @@ class OrganisationStructureTest {
         Mockito.verify(eventPublisher, Mockito.times(1)).publish(any<StructureEntryDeactivated>())
     }
 
+    @Test
+    fun changeStructureEntry_shouldEmitStructureChangedEvent() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD")
+
+        val changedName = "Not general Department";
+        val changedShortcut = "NGD";
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+
+        organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut)
+
+        Mockito.verify(eventPublisher, Mockito.times(1)).publish(any<StructureEntryChanged>())
+    }
+
 }
