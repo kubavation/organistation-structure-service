@@ -12,10 +12,12 @@ internal class StructureEntryTest {
         val entryId = UUID.randomUUID().toString()
         val name = "General Department"
         val shortcut = "GD"
-        val path = "GD"
+        val expectedPath = "GD"
 
         val entry = StructureEntry(entryId, name, shortcut)
 
-        assertEquals(entry.path, path)
+        assertEquals(entry.path, expectedPath)
     }
+
+  
 }
