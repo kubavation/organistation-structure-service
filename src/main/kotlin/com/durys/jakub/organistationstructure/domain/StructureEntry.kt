@@ -51,7 +51,9 @@ class StructureEntry (
     fun changeDetails(name: String, shortcut: String) {
         this.name = name
         this.shortcut = shortcut
-        this.path = this.path.parentPath() + "/${this.shortcut}"
+
+        val parentPath = this.path.parentPath()
+        this.path = if (parentPath.isNotEmpty()) "${parentPath}/${shortcut}" else shortcut
         entries.forEach {entry ->
             changeDetails(entry.name, entry.shortcut)
         }
