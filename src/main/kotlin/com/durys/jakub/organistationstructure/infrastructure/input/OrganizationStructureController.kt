@@ -19,17 +19,14 @@ class OrganizationStructureController(private val organisationStructure: Organiz
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody structure: StructureEntryDTO) {
-        organisationStructure.addStructure(structure.parentId, structure.name, structure.shortcut);
-    }
+    fun create(@RequestBody structure: StructureEntryDTO) = organisationStructure.addStructure(structure.parentId, structure.name, structure.shortcut);
+
 
     @GetMapping("/{structureId}")
-    fun getStructure(@PathVariable structureId: String): StructureEntry {
-        return organisationStructure.findStructure(structureId)
-    }
+    fun getStructure(@PathVariable structureId: String): StructureEntry = organisationStructure.findStructure(structureId)
+
 
     @GetMapping("/{structureId}/dependants")
-    fun getStructureDependants(@PathVariable structureId: String): List<StructureEntry> {
-        return organisationStructure.findDependants(structureId)
-    }
+    fun getStructureDependants(@PathVariable structureId: String): List<StructureEntry> = organisationStructure.findDependants(structureId)
+
 }
