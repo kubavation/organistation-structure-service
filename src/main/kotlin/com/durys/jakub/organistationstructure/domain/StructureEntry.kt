@@ -54,8 +54,13 @@ class StructureEntry (
 
         val parentPath = this.path.parentPath()
         this.path = if (parentPath.isNotEmpty()) "${parentPath}/${shortcut}" else shortcut
-        entries.forEach {entry ->
-            changeDetails(entry.name, entry.shortcut)
+        changeDependantsPath(this.path, this.entries)
+    }
+
+    private fun changeDependantsPath(parentPath: String, entries: MutableList<StructureEntry>) {
+        entries.forEach {
+            it.path = "${parentPath}/${it.shortcut}"
+            it.changeDependantsPath(it.path, it.entries)
         }
     }
 
