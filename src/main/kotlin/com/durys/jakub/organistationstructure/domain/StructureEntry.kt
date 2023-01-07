@@ -8,6 +8,12 @@ fun String.parentPath(): String {
    return this.substring(0, this.lastIndexOf("/"))
 }
 
+fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
+    this.add(entry)
+    return entry
+}
+
+
 @Document("structure_entry")
 class StructureEntry (
     @Id val id: String,
@@ -24,9 +30,7 @@ class StructureEntry (
 
 
     infix fun addDependant(dependant: StructureEntry): StructureEntry {
-        val dependantWithPath = dependant withPathOf this
-        entries.add(dependantWithPath)
-        return dependantWithPath
+        return entries.addDependant(dependant withPathOf this)
     }
 
 
