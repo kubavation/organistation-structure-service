@@ -5,6 +5,8 @@ import com.durys.jakub.organistationstructure.domain.OrganisationStructureServic
 import com.durys.jakub.organistationstructure.domain.StructureEntry
 import com.durys.jakub.organistationstructure.domain.StructureEntryNotFoundException
 import com.durys.jakub.organistationstructure.domain.StructureEntryRepository
+import com.durys.jakub.organistationstructure.domain.events.StructureEntryChanged
+import com.durys.jakub.organistationstructure.domain.events.StructureEntryDeactivated
 import com.durys.jakub.organistationstructure.infrastructure.output.MongoStructureEntryRepository
 import com.durys.jakub.organistationstructure.infrastructure.output.RabbitmqEventPublisher
 import org.junit.jupiter.api.Assertions
@@ -95,6 +97,7 @@ class OrganisationStructureTest {
     }
 
 
+
     //changing structure details
 
     @Test
@@ -153,6 +156,21 @@ class OrganisationStructureTest {
         organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut);
 
         Assertions.assertEquals(entry.entries[0].entries[0].path, expectedPath)
+    }
+
+
+    //events
+
+    @Test
+    fun deactivateStructureEntry_shouldEmitStructureEntryDeactivatedEvent() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD")
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+
+        organizationStructure.deactivateStructure(entryId)
+
+        Mockito.verify(eventPublisher, Mockito.times(1)).publish(any())
     }
 
 }
