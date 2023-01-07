@@ -23,7 +23,11 @@ class StructureEntry (
     var path: String = shortcut
 
 
-    infix fun addDependant(dependant: StructureEntry) = entries.add(dependant withPathOf this)
+    infix fun addDependant(dependant: StructureEntry): StructureEntry {
+        val dependantWithPath = dependant withPathOf this
+        entries.add(dependantWithPath)
+        return dependantWithPath
+    }
 
 
     private infix fun withPathOf(parent: StructureEntry): StructureEntry {
