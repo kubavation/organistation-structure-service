@@ -4,13 +4,13 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 
-fun String.parentPath(): String {
+internal fun String.parentPath(): String {
 
     val lastIndexOfParentSplitter = if (this.lastIndexOf("/") > 0) this.lastIndexOf("/") else 0
     return this.substring(0, lastIndexOfParentSplitter)
 }
 
-fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
+internal fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
     this.add(entry)
     return entry
 }
@@ -31,7 +31,7 @@ class StructureEntry (
     var path: String = shortcut
 
 
-    infix fun addDependant(dependant: StructureEntry): StructureEntry {
+    internal infix fun addDependant(dependant: StructureEntry): StructureEntry {
         return entries.addDependant(dependant withPathOf this)
     }
 
@@ -41,14 +41,14 @@ class StructureEntry (
         return this
     }
 
-    fun deactivate() {
+    internal fun deactivate() {
         status = Status.DEACTIVATED
         entries.forEach {
             it.deactivate()
         }
     }
 
-    fun changeDetails(name: String, shortcut: String) {
+    internal fun changeDetails(name: String, shortcut: String) {
         this.name = name
         this.shortcut = shortcut
 
