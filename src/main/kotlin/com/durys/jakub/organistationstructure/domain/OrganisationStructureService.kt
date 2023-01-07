@@ -32,7 +32,7 @@ class OrganisationStructureService(
         structureEntryRepository.save(entry)
         eventPublisher.publish(StructureEntryChanged(structureEntryId, entry.name, entry.shortcut, entry.path))
     }
-    
+
 
     fun deactivateStructure(structureEntryId: String) {
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)

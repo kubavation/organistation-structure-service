@@ -133,4 +133,26 @@ class OrganisationStructureTest {
         Assertions.assertEquals(entry.entries[0].path, expectedPath)
     }
 
+    @Test
+    fun changeStructureEntryDetailsWith2LevelDependants_shouldSuccessfullyChangeDetails() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD",
+                entries = mutableListOf(
+                        StructureEntry(UUID.randomUUID().toString(), "Department 1", "DD1",
+                                entries = mutableListOf(
+                                        StructureEntry(UUID.randomUUID().toString(), "Dependant Department 2", "DD2")
+                                ))
+                )
+        )
+
+        val changedName = "Not general Department";
+        val changedShortcut = "NGD";
+        val expectedPath = "NGD/DD1/DD2"
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+        organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut);
+
+        Assertions.assertEquals(entry.entries[0].entries[0].path, expectedPath)
+    }
+
 }
