@@ -95,4 +95,23 @@ class OrganisationStructureTest {
     }
 
 
+    //changing structure details
+
+    @Test
+    fun changeStructureEntryDetailsWithoutDependants_shouldSuccessfullyChangeDetails() {
+        val entryId = UUID.randomUUID().toString()
+        val entry = StructureEntry(entryId, "General department", "GD")
+
+        val changedName = "Not general Department";
+        val changedShortcut = "NGD";
+        val expectedPath = "NGD"
+
+        Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
+        organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut);
+
+        Assertions.assertEquals(entry.shortcut, changedShortcut)
+        Assertions.assertEquals(entry.name, changedName)
+        Assertions.assertEquals(entry.path, expectedPath)
+    }
+
 }
