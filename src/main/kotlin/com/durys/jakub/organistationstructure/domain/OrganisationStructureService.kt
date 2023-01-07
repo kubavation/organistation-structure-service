@@ -2,6 +2,7 @@ package com.durys.jakub.organistationstructure.domain
 
 import com.durys.jakub.organistationstructure.commons.EventPublisher
 import com.durys.jakub.organistationstructure.domain.events.StructureEntryChanged
+import com.durys.jakub.organistationstructure.domain.events.StructureEntryDeactivated
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -38,5 +39,6 @@ class OrganisationStructureService(
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
         entry.deactivate()
         structureEntryRepository.save(entry)
+        eventPublisher.publish(StructureEntryDeactivated(structureEntryId))
     }
 }
