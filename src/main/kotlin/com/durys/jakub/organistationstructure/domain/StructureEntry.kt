@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 
 fun String.parentPath(): String {
-   return this.substring(0, this.lastIndexOf("/"))
+
+    val lastIndexOfParentSplitter = if (this.lastIndexOf("/") > 0) this.lastIndexOf("/") else 0
+    return this.substring(0, lastIndexOfParentSplitter)
 }
 
 fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
