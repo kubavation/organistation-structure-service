@@ -15,7 +15,7 @@ import org.mockito.Mockito
 import org.mockito.kotlin.any
 import java.util.UUID
 
-class OrganisationStructureTest {
+internal class OrganisationStructureTest {
 
 
      val structureEntryRepository: StructureEntryRepository = Mockito.mock(MongoStructureEntryRepository::class.java)

@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class OrganisationStructureService(
+internal class OrganisationStructureService(
         private val structureEntryRepository: StructureEntryRepository,
         private val eventPublisher: EventPublisher) {
 
-    fun createStructure(parentId: String?, name: String, shortcut: String) {
+    internal fun createStructure(parentId: String?, name: String, shortcut: String) {
         if (parentId != null) {
             addDependantStructure(parentId, name, shortcut)
         } else {
@@ -19,14 +19,8 @@ class OrganisationStructureService(
         }
     }
 
-    private fun addDependantStructure(parentId: String, name: String, shortcut: String) {
-        val parent = structureEntryRepository.load(parentId) ?: throw StructureEntryNotFoundException(parentId)
 
-        parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
-        structureEntryRepository.save(parent)
-    }
-
-    fun changeStructureEntryDetails(structureEntryId: String, name: String, shortcut: String) {
+    internal fun changeStructureEntryDetails(structureEntryId: String, name: String, shortcut: String) {
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
         entry.changeDetails(name, shortcut)
 
@@ -35,10 +29,17 @@ class OrganisationStructureService(
     }
 
 
-    fun deactivateStructure(structureEntryId: String) {
+    internal fun deactivateStructure(structureEntryId: String) {
         val entry = structureEntryRepository.load(structureEntryId) ?: throw StructureEntryNotFoundException(structureEntryId)
         entry.deactivate()
         structureEntryRepository.save(entry)
         eventPublisher.publish(StructureEntryDeactivated(structureEntryId))
+    }
+
+    private fun addDependantStructure(parentId: String, name: String, shortcut: String) {
+        val parent = structureEntryRepository.load(parentId) ?: throw StructureEntryNotFoundException(parentId)
+
+        parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
+        structureEntryRepository.save(parent)
     }
 }

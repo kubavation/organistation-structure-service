@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 import java.util.UUID
 
 @Component
-class OrganizationStructureApplicationService(
+internal class OrganizationStructureApplicationService(
         private val structureEntryRepository: StructureEntryRepository,
         private val organisationStructureService: OrganisationStructureService) {
 

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoTemplate
 
 @Configuration
-class OrganisationStructureConfiguration {
+internal class OrganisationStructureConfiguration {
 
     @Bean
     fun structureEntryRepository(mongoTemplate: MongoTemplate): StructureEntryRepository = MongoStructureEntryRepository(mongoTemplate)

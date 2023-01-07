@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/organization-structure")
-class OrganizationStructureController(private val organisationStructure: OrganizationStructureApplicationService) {
+internal class OrganizationStructureController(private val organisationStructure: OrganizationStructureApplicationService) {
 
 
     @PostMapping
