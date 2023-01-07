@@ -30,7 +30,7 @@ internal class OrganizationStructureApplicationService(
     }
 
     fun findDependants(structureEntryId: String): List<StructureEntry> {
-        return findStructure(structureEntryId).entries;
+        return findStructure(structureEntryId).entries
     }
 
 }
