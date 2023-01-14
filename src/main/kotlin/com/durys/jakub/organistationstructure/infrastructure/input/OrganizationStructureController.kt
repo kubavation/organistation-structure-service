@@ -32,7 +32,6 @@ internal class OrganizationStructureController(
         return assembler.toModel(organisationStructure.findStructure(structureId))
     }
 
-
     @GetMapping("/{path}/dependants")
     fun getStructureDependants(@PathVariable path: String): List<OrganizationStructureRepresentation> {
         return assembler.toModel(organisationStructure.findDependants(path))

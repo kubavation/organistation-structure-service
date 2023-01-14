@@ -45,7 +45,7 @@ internal class OrganisationStructureService(
 
     fun findByPath(path: String): StructureEntry? {
 
-        val shortcuts = path.split("\\");
+        val shortcuts = path.split("-");
 
         var entry = structureEntryRepository.loadByPath(shortcuts[0])
 
