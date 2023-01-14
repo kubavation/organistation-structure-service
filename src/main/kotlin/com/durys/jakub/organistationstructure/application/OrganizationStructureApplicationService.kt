@@ -28,8 +28,8 @@ internal class OrganizationStructureApplicationService(
         return structureEntryRepository.load(id) ?: throw StructureEntryNotFoundException(id)
     }
 
-    fun findDependants(path: String): List<StructureEntry> {
-        return organisationStructureService.findByPath(path).entries
+    fun findDependants(path: String): MutableList<StructureEntry> {
+        return organisationStructureService.findByPath(path)?.entries ?: mutableListOf()
     }
 
     fun getOrganizationStructure(): List<StructureEntry> {

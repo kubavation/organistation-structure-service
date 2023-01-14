@@ -44,6 +44,17 @@ internal class OrganisationStructureService(
     }
 
     fun findByPath(path: String): StructureEntry? {
-        return null
+
+        val shortcuts = path.split("\\");
+
+        var entry = structureEntryRepository.loadByPath(shortcuts[0])
+
+        shortcuts.stream()
+                .skip(1)
+                .forEach {
+                    entry = entry?.dependantOfShortcut(it)
+                }
+
+        return entry
     }
 }
