@@ -42,4 +42,8 @@ internal class OrganisationStructureService(
         parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
         structureEntryRepository.save(parent)
     }
+
+    fun findByPath(path: String): StructureEntry? {
+        return null
+    }
 }
