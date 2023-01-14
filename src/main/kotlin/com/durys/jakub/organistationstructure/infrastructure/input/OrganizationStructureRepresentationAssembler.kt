@@ -14,7 +14,7 @@ class OrganizationStructureRepresentationAssembler
         val representation = OrganizationStructureRepresentation(entity.id, entity.name, entity.shortcut, entity.path)
 
         representation.add(linkTo<OrganizationStructureController> { getStructureDependants(entity.id) }
-                .withRel("structure dependants"))
+                .withRel("structure-dependants"))
 
         return representation
     }
