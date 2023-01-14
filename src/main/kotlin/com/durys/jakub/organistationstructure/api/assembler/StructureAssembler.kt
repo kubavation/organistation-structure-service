@@ -5,5 +5,5 @@ import com.durys.jakub.organistationstructure.domain.StructureEntry
 
 internal object StructureAssembler {
 
-    fun toDTO(entry: StructureEntry) = StructureDTO(entry.id, entry.name, entry.shortcut, entry.path)
+    infix fun asDTO(entry: StructureEntry) = StructureDTO(entry.id, entry.name, entry.shortcut, entry.path)
 }
