@@ -13,7 +13,7 @@ class OrganizationStructureRepresentationAssembler
     override fun toModel(entity: StructureEntry): OrganizationStructureRepresentation {
         val representation = OrganizationStructureRepresentation(entity.id, entity.name, entity.shortcut, entity.path)
 
-        representation.add(linkTo<OrganizationStructureController> { getStructureDependants(entity.id) }
+        representation.add(linkTo<OrganizationStructureController> { getStructureDependants(entity.path) }
                 .withRel("structure-dependants"))
 
         return representation
