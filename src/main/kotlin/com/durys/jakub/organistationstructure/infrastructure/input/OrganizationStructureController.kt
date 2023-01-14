@@ -36,7 +36,7 @@ internal class OrganizationStructureController(
 
     @GetMapping
     fun getOrganizationStructure(): List<OrganizationStructureRepresentation> {
-        return organisationStructure.getOrganizationStructure();
+        return assembler.toModel(organisationStructure.getOrganizationStructure())
     }
 
 }
