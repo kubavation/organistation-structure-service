@@ -1,1 +1,1 @@
-rootProject.name = "orgranistation-structure-service"
+rootProject.name = "organization-structure-service"
