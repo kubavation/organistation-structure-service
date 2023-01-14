@@ -35,6 +35,10 @@ class StructureEntry (
         return entries.addDependant(dependant withPathOf this)
     }
 
+    fun dependantOfShortcut(shortcut: String): StructureEntry? {
+        return entries.find { shortcut == it.shortcut }
+    }
+
 
     private infix fun withPathOf(parent: StructureEntry): StructureEntry {
         path = "${parent.path}\\$shortcut"
