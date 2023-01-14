@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 internal fun String.parentPath(): String {
 
-    val lastIndexOfParentSplitter = if (this.lastIndexOf("/") > 0) this.lastIndexOf("/") else 0
+    val lastIndexOfParentSplitter = if (this.lastIndexOf("\\") > 0) this.lastIndexOf("\\") else 0
     return this.substring(0, lastIndexOfParentSplitter)
 }
 
@@ -37,7 +37,7 @@ class StructureEntry (
 
 
     private infix fun withPathOf(parent: StructureEntry): StructureEntry {
-        path = "${parent.path}/$shortcut"
+        path = "${parent.path}\\$shortcut"
         return this
     }
 
@@ -53,13 +53,13 @@ class StructureEntry (
         this.shortcut = shortcut
 
         val parentPath = this.path.parentPath()
-        this.path = if (parentPath.isNotEmpty()) "${parentPath}/${shortcut}" else shortcut
+        this.path = if (parentPath.isNotEmpty()) "${parentPath}\\${shortcut}" else shortcut
         changeDependantsPath(this.path, this.entries)
     }
 
     private fun changeDependantsPath(parentPath: String, entries: MutableList<StructureEntry>) {
         entries.forEach {
-            it.path = "${parentPath}/${it.shortcut}"
+            it.path = "${parentPath}\\${it.shortcut}"
             it.changeDependantsPath(it.path, it.entries)
         }
     }

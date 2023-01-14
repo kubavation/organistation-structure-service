@@ -22,7 +22,7 @@ internal class StructureEntryTest {
     @Test
     fun createDependantStructureEntry_shouldContainsPathWith1LevelParentShortcut() {
         val entry = StructureEntry(UUID.randomUUID().toString(), "General Department", "GD")
-        val expectedPath = "GD/DD1"
+        val expectedPath = "GD\\DD1"
 
         val dependant_1  = entry.addDependant(StructureEntry(UUID.randomUUID().toString(), "Dependant department", "DD1"))
 
@@ -33,7 +33,7 @@ internal class StructureEntryTest {
     @Test
     fun createDependantStructureEntry_shouldContainsPathWith2LevelParentsShortcut() {
         val entry = StructureEntry(UUID.randomUUID().toString(), "General Department", "GD")
-        val expectedPath = "GD/DD1/DD2"
+        val expectedPath = "GD\\DD1\\DD2"
 
         val dependant_1 = entry.addDependant(StructureEntry(UUID.randomUUID().toString(), "Dependant department", "DD1"))
 
