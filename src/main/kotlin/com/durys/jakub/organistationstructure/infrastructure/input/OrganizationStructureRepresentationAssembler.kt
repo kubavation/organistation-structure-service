@@ -18,4 +18,8 @@ class OrganizationStructureRepresentationAssembler
 
         return representation
     }
+
+    fun toModel(entities: List<StructureEntry>): List<OrganizationStructureRepresentation> {
+        return entities.map { toModel(it) }
+    }
 }

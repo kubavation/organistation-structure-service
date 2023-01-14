@@ -35,7 +35,7 @@ internal class OrganizationStructureController(
     fun getStructureDependants(@PathVariable structureId: String): List<StructureEntry> = organisationStructure.findDependants(structureId)
 
     @GetMapping
-    fun getOrganizationStructure(): List<StructureEntry> {
+    fun getOrganizationStructure(): List<OrganizationStructureRepresentation> {
         return organisationStructure.getOrganizationStructure();
     }
 
