@@ -24,13 +24,16 @@ internal class OrganizationStructureApplicationService(
         organisationStructureService.deactivateStructure(structureEntryId)
     }
 
-
     fun findStructure(id: String): StructureEntry {
         return structureEntryRepository.load(id) ?: throw StructureEntryNotFoundException(id)
     }
 
     fun findDependants(structureEntryId: String): List<StructureEntry> {
         return findStructure(structureEntryId).entries
+    }
+
+    fun getOrganizationStructure(): List<StructureEntry> {
+        return structureEntryRepository.loadAll()
     }
 
 }

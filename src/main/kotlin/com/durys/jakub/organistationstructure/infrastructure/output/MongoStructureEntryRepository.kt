@@ -19,4 +19,8 @@ open class MongoStructureEntryRepository(private val mongoTemplate: MongoTemplat
     override fun save(entry: StructureEntry) {
         mongoTemplate.save(entry)
     }
+
+    override fun loadAll(): List<StructureEntry> {
+        return mongoTemplate.findAll(StructureEntry::class.java)
+    }
 }
