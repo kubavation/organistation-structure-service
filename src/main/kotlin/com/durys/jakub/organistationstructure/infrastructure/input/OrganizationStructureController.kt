@@ -29,4 +29,7 @@ internal class OrganizationStructureController(private val organisationStructure
     @GetMapping("/{structureId}/dependants")
     fun getStructureDependants(@PathVariable structureId: String): List<StructureEntry> = organisationStructure.findDependants(structureId)
 
+    @GetMapping
+    fun getOrganizationStructure() = organisationStructure.getOrganizationStructure()
+
 }
