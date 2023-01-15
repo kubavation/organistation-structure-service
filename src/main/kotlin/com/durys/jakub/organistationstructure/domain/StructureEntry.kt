@@ -9,7 +9,7 @@ internal fun String.parentPath(): String {
     return this.substring(0, lastIndexOfParentSplitter)
 }
 
-internal fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
+internal fun MutableList<StructureEntry>.addEntry(entry: StructureEntry): StructureEntry {
     add(entry)
     return entry
 }
@@ -31,7 +31,7 @@ class StructureEntry (
 
 
     internal infix fun addDependant(dependant: StructureEntry): StructureEntry {
-        return entries.addDependant(dependant withPathOf this)
+        return entries.addEntry(dependant withPathOf this)
     }
 
     fun dependantOfShortcut(shortcut: String): StructureEntry? {
