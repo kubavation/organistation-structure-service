@@ -12,7 +12,7 @@ open class MongoStructureEntryRepository(private val mongoTemplate: MongoTemplat
         return mongoTemplate.findOne(Query().addCriteria(StructureEntry::id isEqualTo id), StructureEntry::class.java)
     }
 
-    override fun loadByPath(path: String): StructureEntry? {
+    override fun loadEntryStructureByPath(path: String): StructureEntry? {
         return mongoTemplate.findOne(Query().addCriteria(StructureEntry::path isEqualTo path), StructureEntry::class.java)
     }
 

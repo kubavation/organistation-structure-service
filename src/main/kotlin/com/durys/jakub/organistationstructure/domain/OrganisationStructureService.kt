@@ -47,7 +47,7 @@ internal class OrganisationStructureService(
 
         val shortcuts = path.split("-");
 
-        var entry = structureEntryRepository.loadByPath(shortcuts[0])
+        var entry = structureEntryRepository.loadEntryStructureByPath(shortcuts[0])
 
         shortcuts.stream()
                 .skip(1)
