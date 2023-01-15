@@ -36,8 +36,8 @@ internal class OrganisationStructureService(
         eventPublisher.publish(StructureEntryDeactivated(structureEntryId))
     }
 
-    private fun addDependantStructure(parentId: String, name: String, shortcut: String) {
-        val parent = structureEntryRepository.load(parentId) ?: throw StructureEntryNotFoundException(parentId)
+    private fun addDependantStructure(parentPath: String, name: String, shortcut: String) {
+        val parent = findByPath(parentPath) ?: throw StructureEntryNotFoundException(parentPath)
 
         parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
         structureEntryRepository.save(parent)
