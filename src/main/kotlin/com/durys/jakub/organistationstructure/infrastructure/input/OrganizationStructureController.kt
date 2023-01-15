@@ -22,9 +22,10 @@ internal class OrganizationStructureController(
         private val assembler: OrganizationStructureRepresentationAssembler) {
 
 
-    @PostMapping
+    @PostMapping(value = ["", "/{path}"])
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody structure: CreateStructureEntryRequest) = organisationStructure.addStructure(structure.parentId, structure.name, structure.shortcut);
+    fun create(@PathVariable path: String?, @RequestBody structure: CreateStructureEntryRequest) =
+            organisationStructure.addStructure(path, structure.name, structure.shortcut)
 
 
     @GetMapping("/{structureId}")
