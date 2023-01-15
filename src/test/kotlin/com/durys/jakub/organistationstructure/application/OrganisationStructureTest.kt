@@ -128,7 +128,7 @@ internal class OrganisationStructureTest {
 
         val changedName = "Not general Department";
         val changedShortcut = "NGD";
-        val expectedPath = "NGD\\DD1"
+        val expectedPath = "NGD/DD1"
 
         Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
         organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut);
@@ -150,7 +150,7 @@ internal class OrganisationStructureTest {
 
         val changedName = "Not general Department";
         val changedShortcut = "NGD";
-        val expectedPath = "NGD\\DD1\\DD2"
+        val expectedPath = "NGD/DD1/DD2"
 
         Mockito.`when`(structureEntryRepository.load(entryId)).thenReturn(entry)
         organizationStructure.changeStructureDetails(entryId, changedName, changedShortcut);
