@@ -43,14 +43,15 @@ internal class OrganisationStructureService(
         structureEntryRepository.save(parent)
     }
 
+    private fun findEntryStructure(path: String): StructureEntry? {
+        return structureEntryRepository.loadEntryStructureByPath(path.split("-")[0])
+    }
+
     fun findByPath(path: String): StructureEntry? {
 
-        val shortcuts = path.split("-");
+        var entry = findEntryStructure(path)
 
-        var entry = structureEntryRepository.loadEntryStructureByPath(shortcuts[0])
-
-
-        shortcuts.stream()
+        path.split("-").stream()
                 .skip(1)
                 .forEach {
                     entry = entry?.dependantOfShortcut(it)
