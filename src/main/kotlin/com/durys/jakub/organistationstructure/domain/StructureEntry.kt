@@ -5,13 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 
 internal fun String.parentPath(): String {
-
     val lastIndexOfParentSplitter = if (this.lastIndexOf("/") > 0) this.lastIndexOf("/") else 0
     return this.substring(0, lastIndexOfParentSplitter)
 }
 
 internal fun MutableList<StructureEntry>.addDependant(entry: StructureEntry): StructureEntry {
-    this.add(entry)
+    add(entry)
     return entry
 }
 
