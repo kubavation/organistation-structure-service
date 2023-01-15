@@ -4,6 +4,9 @@ import com.durys.jakub.organistationstructure.application.OrganizationStructureA
 import com.durys.jakub.organistationstructure.domain.StructureEntry
 import com.durys.jakub.organistationstructure.infrastructure.input.dto.CreateStructureEntryRequest
 import com.durys.jakub.organistationstructure.infrastructure.input.dto.OrganizationStructureRepresentation
+import org.springframework.hateoas.Link
+import org.springframework.hateoas.RepresentationModel
+import org.springframework.hateoas.mediatype.hal.HalModelBuilder
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -24,13 +27,14 @@ internal class OrganizationStructureController(
 
     @PostMapping(value = ["", "/{path}"])
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@PathVariable path: String?, @RequestBody structure: CreateStructureEntryRequest) =
-            organisationStructure.addStructure(path, structure.name, structure.shortcut)
+    fun create(@PathVariable path: String?, @RequestBody structure: CreateStructureEntryRequest) {
+        organisationStructure.addStructure(path, structure.name, structure.shortcut)
+    }
 
 
-    @GetMapping("/{structureId}")
-    fun getStructure(@PathVariable structureId: String): OrganizationStructureRepresentation {
-        return assembler.toModel(organisationStructure.findStructure(structureId))
+    @GetMapping("/{path}")
+    fun getStructure(@PathVariable path: String): OrganizationStructureRepresentation {
+        return assembler.toModel(organisationStructure.findStructure(path))
     }
 
     @GetMapping("/{path}/dependants")

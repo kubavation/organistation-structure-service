@@ -24,8 +24,8 @@ internal class OrganizationStructureApplicationService(
         organisationStructureService.deactivateStructure(structureEntryId)
     }
 
-    fun findStructure(id: String): StructureEntry {
-        return structureEntryRepository.load(id) ?: throw StructureEntryNotFoundException(id)
+    fun findStructure(path: String): StructureEntry {
+        return organisationStructureService.findByPath(path) ?: throw StructureEntryNotFoundException(path)
     }
 
     fun findDependants(path: String): MutableList<StructureEntry> {
