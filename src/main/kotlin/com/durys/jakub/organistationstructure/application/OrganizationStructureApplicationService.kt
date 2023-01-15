@@ -12,9 +12,8 @@ internal class OrganizationStructureApplicationService(
         private val structureEntryRepository: StructureEntryRepository,
         private val organisationStructureService: OrganisationStructureService) {
 
-    fun addStructure(path: String?, name: String, shortcut: String) {
-        println(path)
-        organisationStructureService.createStructure(path, name, shortcut)
+    fun addStructure(parentPath: String?, name: String, shortcut: String) {
+        organisationStructureService.createStructure(parentPath, name, shortcut)
     }
 
     fun changeStructureDetails(structureEntryId: String, name: String, shortcut: String) {

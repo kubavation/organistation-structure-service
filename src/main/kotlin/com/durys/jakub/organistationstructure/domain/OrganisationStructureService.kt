@@ -11,9 +11,9 @@ internal class OrganisationStructureService(
         private val structureEntryRepository: StructureEntryRepository,
         private val eventPublisher: EventPublisher) {
 
-    internal fun createStructure(path: String?, name: String, shortcut: String) {
-        if (path != null) {
-            addDependantStructure(path, name, shortcut)
+    internal fun createStructure(parentPath: String?, name: String, shortcut: String) {
+        if (parentPath != null) {
+            addDependantStructure(parentPath, name, shortcut)
         } else {
             structureEntryRepository.save(StructureEntry(UUID.randomUUID().toString(), name, shortcut))
         }
