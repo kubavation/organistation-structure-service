@@ -47,8 +47,8 @@ internal class OrganisationStructureTest {
         val parent = StructureEntry(parentId, "Department", "D1");
 
 
-        Mockito.`when`(structureEntryRepository.load(parentId)).thenReturn(parent)
-        organizationStructure.addStructure(parentId, name, shortcut)
+        Mockito.`when`(structureEntryRepository.loadEntryStructureByPath("D1")).thenReturn(parent)
+        organizationStructure.addStructure(parent.path, name, shortcut)
 
         Mockito.verify(structureEntryRepository, Mockito.times(1)).save(any());
         Assertions.assertEquals(1, parent.entries.size)

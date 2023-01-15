@@ -49,6 +49,7 @@ internal class OrganisationStructureService(
 
         var entry = structureEntryRepository.loadEntryStructureByPath(shortcuts[0])
 
+
         shortcuts.stream()
                 .skip(1)
                 .forEach {
