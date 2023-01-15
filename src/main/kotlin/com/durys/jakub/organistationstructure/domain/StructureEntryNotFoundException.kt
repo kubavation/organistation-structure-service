@@ -1,4 +1,4 @@
 package com.durys.jakub.organistationstructure.domain
 
-class StructureEntryNotFoundException(val id: String) : RuntimeException("Structure entry of id $id not found") {
+class StructureEntryNotFoundException(val path: String) : RuntimeException("Structure entry of path $path not found") {
 }
