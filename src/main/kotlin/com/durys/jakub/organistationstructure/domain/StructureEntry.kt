@@ -29,6 +29,8 @@ class StructureEntry (
 
     constructor() : this(null, null, null, null, mutableListOf())
 
+    constructor(id: String, name: String, shortcut: String) : this(id, name, shortcut, null, mutableListOf())
+
     enum class Status {
         ACTIVE, DEACTIVATED
     }

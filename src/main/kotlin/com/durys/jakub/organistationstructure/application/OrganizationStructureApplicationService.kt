@@ -29,7 +29,7 @@ internal class OrganizationStructureApplicationService(
     }
 
     fun findDependants(path: String): MutableList<StructureEntry> {
-        return organisationStructureService.findByPath(path)?.entries ?: mutableListOf()
+        return organisationStructureService.findByPath(path)?.subStructures ?: mutableListOf()
     }
 
     fun getOrganizationStructure(): List<StructureEntry> {

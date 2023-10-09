@@ -37,6 +37,8 @@ internal class OrganisationStructureService(
     }
 
     private fun addDependantStructure(parentPath: String, name: String, shortcut: String) {
+
+        //todo rethink -> how to update specific entry
         val parent = findByPath(parentPath) ?: throw StructureEntryNotFoundException(parentPath)
 
         parent addDependant StructureEntry(UUID.randomUUID().toString(), name, shortcut)
