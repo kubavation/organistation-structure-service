@@ -21,13 +21,13 @@ internal fun MutableList<StructureEntry>.addEntry(entry: StructureEntry): Struct
 @Entity
 class StructureEntry (
 
-    @Id @GeneratedValue var id: String?,
-    var name: String?,
-    var shortcut: String?,
+    @Id @GeneratedValue val id: String,
+    var name: String,
+    var shortcut: String,
     @ManyToOne @JoinColumn(name = "parent_id") var parentStructure: StructureEntry?,
     @OneToMany(mappedBy = "parentStructure") var subStructures: MutableList<StructureEntry> = mutableListOf()) {
 
-    constructor() : this(null, null, null, null, mutableListOf())
+    constructor(id: String, name: String, shortcut: String) : this(id, name, shortcut, null, mutableListOf())
 
     enum class Status {
         ACTIVE, DEACTIVATED

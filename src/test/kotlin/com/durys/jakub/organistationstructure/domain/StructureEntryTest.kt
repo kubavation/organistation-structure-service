@@ -26,7 +26,7 @@ internal class StructureEntryTest {
 
         val dependant_1  = entry.addDependant(StructureEntry(UUID.randomUUID().toString(), "Dependant department", "DD1"))
 
-        assertEquals(1, entry.entries.size)
+        assertEquals(1, entry.subStructures.size)
         assertEquals(dependant_1.path, expectedPath)
     }
 
@@ -40,7 +40,7 @@ internal class StructureEntryTest {
         val dependant_2 = dependant_1.addDependant(StructureEntry(UUID.randomUUID().toString(), "Dependant department 2", "DD2"))
 
 
-        assertEquals(1, dependant_1.entries.size)
+        assertEquals(1, dependant_1.subStructures.size)
         assertEquals(dependant_2.path, expectedPath)
     }
 }
